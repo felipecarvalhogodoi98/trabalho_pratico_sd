@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "admin",
-  password: "1234",
+  password: "admin",
   database: "meu_banco",
 });
 
@@ -16,12 +16,12 @@ connection.connect((err) => {
   }
   console.log("Conectado ao MySQL");
 
-  connection.query("SELECT 1 + 1 AS solution", (queryErr, results) => {
+  connection.query("SELECT * FROM user", (queryErr, results) => {
     if (queryErr) {
       console.error("Erro ao executar a consulta:", queryErr);
       return;
     }
-    console.log("Resultado da consulta:", results[0].solution);
+    console.log("Resultado da consulta:", results);
 
     // Fechar a conexão após a consulta
     connection.end((endErr) => {

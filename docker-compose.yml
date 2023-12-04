@@ -12,3 +12,22 @@ services:
       - "3306:3306"
     volumes:
       - ./db:/docker-entrypoint-initdb.d
+      
+  node-app:
+    image: node:latest
+    container_name: node-app-container
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    depends_on:
+      - mysql
+    ports:
+      - "3000:3000"
+    command: >
+      bash -c "npm install && npm start"
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_USER: admin
+      DATABASE_PASSWORD: admin
+      DATABASE_NAME: meu_banco

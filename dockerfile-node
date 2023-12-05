@@ -1,23 +1,21 @@
 # Dockerfile for node-app
 FROM node:latest
 
-WORKDIR /app
+WORKDIR /
 
-COPY package*.json ./
+COPY ./app .
 
 RUN npm install
-
-COPY . .
 
 EXPOSE 3000
 
 CMD ["bash", "-c", "npm install && npm start"]
 
 # Buildar a imagem
-# docker build -t node-server -f dockerfile-node .
+# docker build -t node-server-2 -f dockerfile-node .
 
 # Executar o container
-# docker run -d --name node-container -p 3000:3000 --link mysql-server node-server
+# docker run -d --name node-container-2 -p 3000:3000 --link mysql-container-2 node-server-2
 
 # Parar o container
-# docker stop mysql-container
+# docker stop mysql-container-2

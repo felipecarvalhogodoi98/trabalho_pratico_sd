@@ -20,6 +20,8 @@ connection.connect((err) => {
   }
 });
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   connection.query("SELECT * FROM user", (err, results) => {
     if (err) {
@@ -27,6 +29,75 @@ app.get("/", (req, res) => {
       res.status(500).send("Erro interno do servidor");
     } else {
       res.json(results);
+    }
+  });
+});
+
+app.post("/users", (req, res) => {
+  const { nome, dataNascimento, cpf } = req.body;
+  const query =
+    "INSERT INTO user (nome, data_nascimento, cpf) VALUES (?, ?, ?)";
+  connection.query(query, [nome, dataNascimento, cpf], (err, result) => {
+    if (err) {
+      console.error("Erro ao criar usuário:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.status(201).json({ id: result.insertId });
+    }
+  });
+});
+
+app.get("/users", (req, res) => {
+  const query = "SELECT * FROM user";
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("Erro ao obter usuários:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.get("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = "SELECT * FROM user WHERE id = ?";
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error("Erro ao obter usuário por ID:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else if (results.length === 0) {
+      res.status(404).json({ error: "Usuário não encontrado" });
+    } else {
+      res.json(results[0]);
+    }
+  });
+});
+
+app.put("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  const { nome, dataNascimento, cpf } = req.body;
+  const query =
+    "UPDATE user SET nome = ?, data_nascimento = ?, cpf = ? WHERE id = ?";
+  connection.query(query, [nome, dataNascimento, cpf, userId], (err) => {
+    if (err) {
+      console.error("Erro ao atualizar usuário por ID:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
+app.delete("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = "DELETE FROM user WHERE id = ?";
+  connection.query(query, [userId], (err) => {
+    if (err) {
+      console.error("Erro ao excluir usuário por ID:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.json({ success: true });
     }
   });
 });

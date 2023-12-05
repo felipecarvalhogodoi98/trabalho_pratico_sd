@@ -10,11 +10,11 @@ COPY ./db/ /docker-entrypoint-initdb.d/
 EXPOSE 3306
 
 # Buildar a imagem
-# docker build -t mysql-server -f dockerfile-mysql .
+# docker build -t mysql-server-2 -f dockerfile-mysql .
 
 # Executar o container
-# docker run -d --name mysql-container -p 3306:3306 mysql-server
+# docker run -d --name mysql-container-2 -p 3306:3306 mysql-server-2
 
 # Parar o container
-# docker stop mysql-container
+# docker stop mysql-container-2
 

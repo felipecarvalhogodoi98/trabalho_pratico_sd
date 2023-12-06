@@ -1,5 +1,20 @@
 # Trabalho Prático de Sistemas Distribuídos: MySQL + Node.js + Docker
 
+Este projeto demonstra a integração de contêineres Docker para criar uma aplicação Node.js conectada a um banco de dados MySQL. A arquitetura é composta por dois contêineres independentes: um para o servidor Node.js e outro para o servidor MySQL.
+
+## O que é o Docker?
+O Docker é uma plataforma de código aberto que permite automatizar o processo de implantação de aplicativos dentro de contêineres leves e portáteis. Criar, integrar e manter a consistencia dos ambientes.
+
+- <strong>Contêineres</strong>: Um contêiner é uma instancia executavel de uma imagem docker que pode incluir o codigo do aplicativo, bibliotecas, dependencias e configurações.
+
+- <strong>Dockerfile</strong>: Define as configuraçoes para construir uma imagem docker.
+
+- <strong>Imagens docker</strong>: Uma imagem Docker é um pacote que inclui todas as dependências e configurações necessárias para executar um aplicativo.
+
+- <strong>Docker hub</strong>: O Docker Hub é um repositório público de imagens Docker. 
+
+- <strong>Orquestradores de contêineres</strong>: Ferramentas como <strong>Docker Compose</strong>, Kubernetes e Docker Swarm ajudam a gerenciar e orquestrar contêineres em ambientes de produção.
+
 ## Arquitetura
 A arquitetura do projeto é baseada em contêineres Docker, com dois serviços principais:
 

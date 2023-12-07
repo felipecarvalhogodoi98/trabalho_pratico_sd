@@ -105,3 +105,73 @@ app.delete("/users/:id", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor está rodando em http://localhost:${port}`);
 });
+
+
+app.get("/vehicles/list", (req, res) => {
+  const query = "SELECT * FROM vehicles";
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error("Erro ao obter os veículos:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.post("/vehicles/insert", (req, res) => {
+  const { chassi, placa, modelo } = req.body;
+  const query =
+    "INSERT INTO vehicles (chassi, placa, modelo) VALUES (?, ?, ?)";
+  connection.query(query, [chassi, placa, modelo], (err, result) => {
+    if (err) {
+      console.error("Erro ao criar o veículo:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.status(201).json({ id: result.insertId });
+    }
+  });
+});
+
+app.get("/vehicles/select/:id", (req, res) => {
+  const vehicleID = req.params.id;
+  const query = "SELECT * FROM vehicles WHERE id = ?";
+  connection.query(query, [vehicleID], (err, results) => {
+    if (err) {
+      console.error("Erro ao obter o veículo por ID:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else if (results.length === 0) {
+      res.status(404).json({ error: "Veículo não encontrado" });
+    } else {
+      res.json(results[0]);
+    }
+  });
+});
+
+app.put("/vehicles/update/:id", (req, res) => {
+  const vehicleID = req.params.id;
+  const { chassi, placa, modelo } = req.body;
+  const query =
+    "UPDATE vehicles SET chassi = ?, placa = ?, modelo = ? WHERE id = ?";
+  connection.query(query, [chassi, placa, modelo, vehicleID], (err) => {
+    if (err) {
+      console.error("Erro ao atualizar o veículo por ID:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});
+
+app.delete("/vehicles/delete/:id", (req, res) => {
+  const vehicleID = req.params.id;
+  const query = "DELETE FROM vehicles WHERE id = ?";
+  connection.query(query, [vehicleID], (err) => {
+    if (err) {
+      console.error("Erro ao excluir o veículo por ID:", err);
+      res.status(500).json({ error: "Erro interno do servidor" });
+    } else {
+      res.json({ success: true });
+    }
+  });
+});

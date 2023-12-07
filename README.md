@@ -4,7 +4,7 @@ Este projeto demonstra a integração de contêineres Docker para criar uma apli
 
 ## O que é o Docker?
 
-![Texto Alternativo](img/docker.png)
+![Imgem ilustrando o docker](img/docker.png)
 
 O Docker é uma plataforma de código aberto que permite automatizar o processo de implantação de aplicativos dentro de contêineres leves e portáteis. Criar, integrar e manter a consistencia dos ambientes.
 
@@ -29,7 +29,7 @@ O Docker Compose é uma ferramenta que permite definir e gerenciar aplicativos D
 
   - <strong>Arquivo YAML</strong>: A configuração do Docker Compose é definida em um arquivo YAML, que descreve todos os aspectos do aplicativo, como serviços, redes, volumes, variáveis de ambiente e outros parâmetros.
 
-  ![Texto Alternativo](img/docker-compose.png)
+  ![Imagem exemplificando o docker compose](img/docker-compose.png)
 
   O arquivo docker-compose.yml que define um aplicativo web e um banco de dados foi definido da seguinte forma na aplicação, lembrando que dependendo das configurações do banco de dados e nodeJs pode ser alterado:
 
@@ -80,7 +80,7 @@ A arquitetura do projeto é baseada em contêineres Docker, com dois serviços p
   - Pode ser construído a partir de uma imagem oficial do MySQL.
   - Configurações, como nome de usuário, senha e banco de dados, são fornecidas por meio de variáveis de ambiente no Docker Compose ou dockerfile.
 
-  ![Texto Alternativo](img/node-mysql.png)
+  ![Imagem apresentando a conexão entre node e mysql](img/node-mysql.png)
 
  A relação entre o contêiner do MySQL e o contêiner do Node.js é uma arquitetura de software. Esses contêineres são instâncias isoladas de aplicativos que podem ser implantadas, gerenciadas e escaladas independentemente.
 

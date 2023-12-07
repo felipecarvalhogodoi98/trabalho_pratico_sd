@@ -4,7 +4,7 @@ Este projeto demonstra a integração de contêineres Docker para criar uma apli
 
 ## O que é o Docker?
 
-![Imgem ilustrando o docker](img/docker.png)
+![Imagem ilustrando o docker](img/docker.png)
 
 O Docker é uma plataforma de código aberto que permite automatizar o processo de implantação de aplicativos dentro de contêineres leves e portáteis. Criar, integrar e manter a consistencia dos ambientes.
 
